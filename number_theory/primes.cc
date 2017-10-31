@@ -61,7 +61,7 @@ vector<ll> primes(ll n) { // primes in [0,n)
   return primes(0,n);
 }
 
-// shorter alternative for range 0, n
+// shorter alternative for range [0, n)
 const int MAX_PR = 10000000;
 bitset<MAX_PR> isprime;
 vector<int> sieve(int lim) {
