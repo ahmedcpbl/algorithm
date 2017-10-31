@@ -9,8 +9,8 @@
 //   Then it sieve the rest numbers.
 //
 // Complexity: 
-//   O(n log log n)
-//
+//   O(n log log n) where n is the size range n = hi - lo
+//   for n = 10^7, it works in 1s.
 // Verified:
 //   SPOJ2, SPOJ503
 //
@@ -26,8 +26,8 @@
 
 using namespace std;
 
-#define fst first
-#define snd second
+#define F first
+#define S second
 #define all(c) c.begin(), c.end()
 
 typedef long long ll;
@@ -50,8 +50,8 @@ vector<ll> primes(ll lo, ll hi) { // primes in [lo, hi)
     ll high = min(low + M, hi);
     fill(all(composite), 0);
     for (auto &z: sieve) 
-      for (; z.snd < high; z.snd += z.fst)
-        composite[z.snd - low] = 1;
+      for (; z.S < high; z.S += z.D)
+        composite[z.S - low] = 1;
     for (; k < high; k+=2) 
       if (!composite[k - low]) ps.push_back(k);
   }
@@ -60,6 +60,20 @@ vector<ll> primes(ll lo, ll hi) { // primes in [lo, hi)
 vector<ll> primes(ll n) { // primes in [0,n)
   return primes(0,n);
 }
+
+// shorter alternative for range 0, n
+const int MAX_PR = 10000000;
+bitset<MAX_PR> isprime;
+vector<int> sieve(int lim) {
+    isprime.set(); isprime[0] = isprime[1] = 0;
+    for (int i = 4; i < lim; i += 2) isprime[i] = 0;
+    for (int i = 3; i*i < lim; i += 2) if (isprime[i])
+            for (int j = i*i; j < lim; j += i*2) isprime[j] = 0;
+    vector<int> pr;
+    for(int i=2;i<lim;++i) if (isprime[i]) pr.push_back(i);
+    return pr;
+}
+
 
 // SPOJ503
 int main() { 
