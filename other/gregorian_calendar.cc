@@ -30,7 +30,7 @@ struct gregorian_date {
     m = (h/153+2)%12 + 1;
     y = (e/1461) + (14-m)/12 - 4716;
   }
-  // number of days from the epoch
+  // number of days from the epoch (1721060 day to 1-1-1)
   int julian_day_number() const {
     int a = (14-m)/12, Y = y+4800-a, M = m+12*a-3;
     return d + (153*M+2)/5 + 365*Y + (Y/4) - (Y/100) + (Y/400) - 32045;
