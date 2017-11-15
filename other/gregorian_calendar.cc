@@ -35,7 +35,7 @@ struct gregorian_date {
     int a = (14-m)/12, Y = y+4800-a, M = m+12*a-3;
     return d + (153*M+2)/5 + 365*Y + (Y/4) - (Y/100) + (Y/400) - 32045;
   }
-  // week of the day
+  // week of the day 
   int day_of_week() const {
     return (julian_day_number() + 1) % 7;
   }
