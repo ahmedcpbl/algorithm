@@ -22,7 +22,7 @@ struct gregorian_date {
   int y, m, d; 
   gregorian_date(int y, int m, int d) : y(y), m(m), d(d) { }
 
-  // from julian day number to gregorian date
+  // from julian day number to gregorian date 
   gregorian_date(int x) {
     int e = 4*x + 4*((((4*x+274277)/146097)*3)/4) + 5455;
     int h = 5*((e% 1461) / 4) + 2;
