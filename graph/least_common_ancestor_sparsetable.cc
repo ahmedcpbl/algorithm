@@ -70,7 +70,7 @@ struct tree {
     return i == j ? u : tour[argmin(table[h][i], table[h][j-(1<<h)])];
   }
 };
-
+ 
 int main() {
   int n;
   scanf("%d", &n);
