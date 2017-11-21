@@ -60,14 +60,14 @@ struct tree {
     int logn = sizeof(int)*__CHAR_BIT__-1-__builtin_clz(tour.size()); // log2
     table.resize(logn+1, vector<int>(tour.size()));
     iota(all(table[0]), 0);
-    for (int h = 0; h < logn; ++h) 
+    for (int h = 0; h < logn; ++h)
       for (int i = 0; i+(1<<h) < tour.size(); ++i)
         table[h+1][i] = argmin(table[h][i], table[h][i+(1<<h)]);
   }
   int lca(int u, int v) {
-    int i = pos[u], j = pos[v]; if (i > j) swap(i, j);
+    int i = pos[u], j = pos[v]; if (i > j) swap(i, j);++j;
     int h = sizeof(int)*__CHAR_BIT__-1-__builtin_clz(j-i); // = log2
-    return i == j ? u : tour[argmin(table[h][i], table[h][j-(1<<h)])];
+    return tour[argmin(table[h][i], table[h][j-(1<<h)])];
   }
 };
  
